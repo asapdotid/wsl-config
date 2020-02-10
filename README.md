@@ -1,4 +1,4 @@
-# WSL Ubuntu for Web Server (LEMP Stack) + Node Js
+# WIndows 10 Pro - WSL Ubuntu for Web Server (LEMP Stack) + Node Js
 
 > All service installation from PPA Launchpad [Link](https://launchpad.net/ubuntu)
 
