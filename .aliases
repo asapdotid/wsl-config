@@ -1,0 +1,67 @@
+# Global Bash #
+alias c='clear'
+alias lsa='ls -al'
+alias lla='ll -al'
+alias cd~='cd ~'
+alias cd.='cd ..'
+alias cd..='cd ../../'
+alias cd...='cd ../../../'
+alias vizsh='vim ~/.zshrc'
+alias sozsh='source ~/.zshrc'
+alias upzsh='upgrade_oh_my_zsh'
+alias hs='history | grep'
+alias mkcd='foo(){ mkdir -p "$1"; cd "$1" }; foo '
+alias rmf='rm -rf'
+alias sublime='subl.exe'
+
+# Git Command Alises #
+alias gi='git init'
+alias gs='git status'
+alias ga.='git add .'
+alias gaa='git add -All'
+alias gac='git add . && git commit -m'
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+alias gbr='git branch'
+alias gbra='git branch -a'
+alias gbrr='git branch -r'
+alias gco='git checkout'
+alias gmr='git merge'
+alias gps='git push -u'
+alias gpl='git pull'
+alias gcl='git clone'
+alias ggpull='git pull origin "$(git symbolic-ref --short HEAD)"'
+alias ggpush='git push origin "$(git symbolic-ref --short HEAD)"'
+
+# NodeJs NPM #
+alias npmrb='npm run build'
+alias npmrbs='npm run build-staging'
+
+# Docker
+alias dcr='docker-compose up -d --build -f'
+# Must be run first because images are attached to containers
+alias drmc='docker rm -f $(docker ps -a -q)'
+# Delete every Docker image
+alias drmi='docker rmi -f $(docker images -q)'
+
+# Handling Service
+alias php:start='sudo service php7.4-fpm start'
+alias php:restart='sudo service php7.4-fpm restart'
+alias php:stop='sudo service php7.4-fpm stop'
+alias nginx:start='sudo service nginx start'
+alias nginx:restart='sudo service nginx restart'
+alias nginx:stop='sudo service nginx stop'
+alias mysql:start='sudo service mysql start'
+alias mysql:restart='sudo service mysql restart'
+alias mysql:stop='sudo service mysql stop'
+alias postgre:start='sudo service postgresql start'
+alias postgre:restart='sudo service postgresql restart'
+alias postgre:stop='sudo service postgresql stop'
+alias service:status='sudo service --status-all'
+alias service:start:web='sudo service php7.4-fpm start && sudo service mysql start && sudo service nginx start'
+alias service:stop:web='sudo service php7.4-fpm stop && sudo service mysql stop && sudo service nginx stop'
+alias service:restart:web='sudo service php7.4-fpm restart && sudo service mysql restart && sudo service nginx restart'
+
+# Laravel
+alias pa='php artisan'
+alias pas='pa serve'                                                                                                                                                     alias lumens='php -S localhost:8000 -t public'
