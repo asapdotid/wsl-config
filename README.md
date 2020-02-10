@@ -1,8 +1,50 @@
-# WIndows 10 Pro - WSL Ubuntu for Web Server (LEMP Stack) + Node Js
+# Windows 10 Pro - WSL Ubuntu for Web Server
+
+> **LEMP Stack** + **Node Js**
 
 > All service installation from PPA Launchpad [Link](https://launchpad.net/ubuntu)
 
 ## Before run all file bash script
+
+you can mount windows drive to WSL which create wsl config on etc
+
+```sudo vim /etc/wsl.conf```
+
+add this config:
+
+```
+# Enable extra metadata options by default
+[automount]
+enabled = true
+root = /
+options = "metadata,umask=22,fmask=11"
+mountFsTab = false
+
+# Enable DNS – even though these are turned on by default, we’ll specify here just to be explicit.
+[network]
+generateHosts = true
+generateResolvConf = true
+```
+
+save it `:wq` and restart WSL (open PowerShell as Administrator) then execute below this
+
+```
+Get-Service LxssManager | Restart-Service
+```
+
+![Restart WSL](./images/wsl-powershell-restart-wsl.jpg "Restart WSL from PowerShell as Administrator")
+
+You can check that drive show on wsl:
+
+`ls -al /c/` or `ls -al /d/`
+
+than you can link (Win10) project directory to (WSL) home directory etc:
+
+`ln -s /d/projects ~/.`
+
+![Restart WSL](./images/wsl-list-home-dir.jpg "Show list home directory WSL")
+
+next
 
 ```
 sudo apt update && sudo apt upgrade -y
