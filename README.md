@@ -1,6 +1,6 @@
 # WSL Ubuntu for Web Server (LEMP Stack) + Node Js
 
-> All service installation from PPA Launchpad (Link)[https://launchpad.net/ubuntu]
+> All service installation from PPA Launchpad [Link](https://launchpad.net/ubuntu)
 
 ## Before run all file bash script
 
@@ -14,4 +14,4 @@ next you can running every setup file.
 
 you can check manual.
 
-do not hesitate if there are suggestions and criticisms (@asapdotid)[https://github.com/asapdotid]
+do not hesitate if there are suggestions and criticisms [@asapdotid](https://github.com/asapdotid)
