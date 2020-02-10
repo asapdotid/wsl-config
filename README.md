@@ -56,7 +56,9 @@ download it and the chmod command sets the all file with .sh extention
 
 ```find . -type f -iname "*.sh" -exec chmod +x {} \;```
 
-next you can running every setup file.
+next you can running every setup file, example:
+
+`./install-php-fpm-on-wsl.sh` or `./install-nginx-on-wsl.sh`
 
 > note: You can choose what MySQL do you use 5 or 8 up to you, just select one.
 
