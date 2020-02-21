@@ -12,7 +12,10 @@ alias upzsh='upgrade_oh_my_zsh'
 alias hs='history | grep'
 alias mkcd='foo(){ mkdir -p "$1"; cd "$1" }; foo '
 alias rmf='rm -rf'
-alias sublime='subl.exe'
+alias apt:clean='sudo apt-get autoremove --purge && sudo apt-get clean'
+
+# Python
+# alias python='python3'
 
 # Git Command Alises #
 alias gi='git init'
@@ -45,23 +48,26 @@ alias drmc='docker rm -f $(docker ps -a -q)'
 alias drmi='docker rmi -f $(docker images -q)'
 
 # Handling Service
-alias php:start='sudo service php7.4-fpm start'
-alias php:restart='sudo service php7.4-fpm restart'
-alias php:stop='sudo service php7.4-fpm stop'
-alias nginx:start='sudo service nginx start'
-alias nginx:restart='sudo service nginx restart'
-alias nginx:stop='sudo service nginx stop'
-alias mysql:start='sudo service mysql start'
-alias mysql:restart='sudo service mysql restart'
-alias mysql:stop='sudo service mysql stop'
-alias postgre:start='sudo service postgresql start'
-alias postgre:restart='sudo service postgresql restart'
-alias postgre:stop='sudo service postgresql stop'
-alias service:status='sudo service --status-all'
-alias service:start:web='sudo service php7.4-fpm start && sudo service mysql start && sudo service nginx start'
-alias service:stop:web='sudo service php7.4-fpm stop && sudo service mysql stop && sudo service nginx stop'
-alias service:restart:web='sudo service php7.4-fpm restart && sudo service mysql restart && sudo service nginx restart'
+alias s:php:start='sudo service php7.4-fpm start'
+alias s:php:restart='sudo service php7.4-fpm restart'
+alias s:php:stop='sudo service php7.4-fpm stop'
+alias s:nginx:start='sudo service nginx start'
+alias s:nginx:restart='sudo service nginx restart'
+alias s:nginx:stop='sudo service nginx stop'
+alias s:mydb:start='sudo service mysql start'
+alias s:mydb:restart='sudo service mysql restart'
+alias s:mydb:stopp='sudo service mysql stop'
+alias s:podb:start='sudo service postgresql start'
+alias s:podb:restart='sudo service postgresql restart'
+alias s:podb:stop='sudo service postgresql stop'
+alias s:ls='sudo service --status-all'
+alias s:web:start='s:php:start && s:mydb:start && s:nginx:start'
+alias s:web:stop='s:php:stop && s:mydb:stop && s:nginx:stop'
+alias s:web:restart='s:php:restart && s:mydb:restart && s:nginx:restart'
 
-# Laravel
+# Laravel 
 alias pa='php artisan'
-alias pas='pa serve'                                                                                                                                                     alias lumens='php -S localhost:8000 -t public'
+alias pas='pa serve'
+
+# Lumen
+alias lumens='php -S localhost:8000 -t public'
