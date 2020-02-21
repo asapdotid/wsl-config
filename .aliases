@@ -51,23 +51,13 @@ alias drmc='docker rm -f $(docker ps -a -q)'
 # Delete every Docker image
 alias drmi='docker rmi -f $(docker images -q)'
 
-# Handling Service
-alias s:php:start='sudo service php7.4-fpm start'
-alias s:php:restart='sudo service php7.4-fpm restart'
-alias s:php:stop='sudo service php7.4-fpm stop'
-alias s:nginx:start='sudo service nginx start'
-alias s:nginx:restart='sudo service nginx restart'
-alias s:nginx:stop='sudo service nginx stop'
-alias s:mydb:start='sudo service mysql start'
-alias s:mydb:restart='sudo service mysql restart'
-alias s:mydb:stopp='sudo service mysql stop'
-alias s:podb:start='sudo service postgresql start'
-alias s:podb:restart='sudo service postgresql restart'
-alias s:podb:stop='sudo service postgresql stop'
+# Handling Service (start, stop, restart)
 alias s:ls='sudo service --status-all'
-alias s:web:start='s:php:start && s:mydb:start && s:nginx:start'
-alias s:web:stop='s:php:stop && s:mydb:stop && s:nginx:stop'
-alias s:web:restart='s:php:restart && s:mydb:restart && s:nginx:restart'
+alias s:php='function _sphp(){ sudo service php7.4-fpm $1 };_sphp'
+alias s:nginx='function _snginx(){ sudo service nginx $1 };_snginx'
+alias s:mydb='function _smydb(){ sudo service mysql $1 };_smydb'
+alias s:postdb='function _spostdb(){ sudo service postgresql $1 };_spostdb'
+alias s:web='function _sweb(){ s:php $1 && s:mydb $1 && s:nginx $1 };_sweb'
 
 # Laravel 
 alias pa='php artisan'
