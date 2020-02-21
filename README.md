@@ -64,4 +64,16 @@ next you can running every setup file, example:
 
 you can check manual.
 
+### Add correct permission files and directory optional (Laravel storage & boostrap/cache directory)
+
+you can run shell script `setPermission.sh` and follow instruction
+
+first setup `setPermission.sh` to executable:
+
+> chmod +x setPermission.sh
+
+then execute the file in terminal: `./setPermission.sh`
+
+wait until done.. :)
+
 do not hesitate if there are suggestions and criticisms [@asapdotid](https://github.com/asapdotid)
