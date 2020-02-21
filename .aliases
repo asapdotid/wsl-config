@@ -13,6 +13,10 @@ alias hs='history | grep'
 alias mkcd='foo(){ mkdir -p "$1"; cd "$1" }; foo '
 alias rmf='rm -rf'
 alias apt:clean='sudo apt-get autoremove --purge && sudo apt-get clean'
+alias cd:web='cd ~/projects/www && ll -al'
+alias cd:vhosts='cd ~/.config/vhosts && ll -al'
+alias v:hosts='sudo vim /etc/hosts'
+
 
 # Python
 # alias python='python3'
