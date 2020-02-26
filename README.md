@@ -85,7 +85,7 @@ check from mysql error log file on `tail -f  /var/log/mysql/error.log`
 InnoDB: You can disable Linux Native AIO by setting innodb_use_native_aio = 0 in my.cnf
 ```
 
-1. Backup & remove both `ib_logfile0` & `ib_logfile1` files under --> /var/lib/mysql
+1. Backup & remove both `ib_logfile0` & `ib_logfile1` files under `/var/lib/mysql`
 
     if you could't remove with sudo, you can use `sudo su` first
 
