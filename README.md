@@ -74,6 +74,30 @@ first setup `setPermission.sh` to executable:
 
 then execute the file in terminal: `./setPermission.sh`
 
+
+### Correct issue install MySQL 8.0 if upgrade from MySQL 5.7
+
+> DISABLE LINUX NATIVE AIO TO FIX MYSQL INSTALLATION PROBLEM ON OPENVZ VPS
+
+check from mysql error log file on `tail -f  /var/log/mysql/error.log`
+
+```
+InnoDB: You can disable Linux Native AIO by setting innodb_use_native_aio = 0 in my.cnf
+```
+
+1. Backup & remove both `ib_logfile0` & `ib_logfile1` files under --> /var/lib/mysql
+
+    if you could't remove with sudo, you can use `sudo su` first
+
+1. Therefore, create a file called **mysql-fix.cnf** under `/etc/mysql/conf.d/` and put
+
+```
+[mysqld]
+innodb_use_native_aio = 0
+```
+
+Install and configure MySQL ( mysql-server ) then start mysql `sudo service mysql start`
+
 wait until done.. :)
 
 do not hesitate if there are suggestions and criticisms [@asapdotid](https://github.com/asapdotid)

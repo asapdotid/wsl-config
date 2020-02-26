@@ -17,7 +17,6 @@ alias cd:web='cd ~/projects/www && ll -al'
 alias cd:vhosts='cd ~/.config/vhosts && ll -al'
 alias v:hosts='sudo vim /etc/hosts'
 
-
 # Python
 # alias python='python3'
 
