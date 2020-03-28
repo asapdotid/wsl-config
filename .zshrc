@@ -110,3 +110,6 @@ export PATH=$HOME/.composer/vendor/bin:$PATH
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source $HOME/.aliases
+source $HOME/.function
+
+print_image_welcome_page

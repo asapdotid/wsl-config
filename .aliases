@@ -16,28 +16,25 @@ alias apt:clean='sudo apt-get autoremove --purge && sudo apt-get clean'
 alias cd:web='cd ~/projects/www && ll -al'
 alias cd:vhosts='cd ~/.config/vhosts && ll -al'
 alias v:hosts='sudo vim /etc/hosts'
+alias www='cd $HOME/projects/www'
 
 # Python
 # alias python='python3'
 
 # Git Command Alises #
-alias gi='git init'
-alias gs='git status'
-alias ga.='git add .'
-alias gaa='git add -All'
-alias gac='git add . && git commit -m'
-alias gcm='git commit -m'
-alias gcam='git commit -a -m'
-alias gbr='git branch'
-alias gbra='git branch -a'
-alias gbrr='git branch -r'
-alias gco='git checkout'
-alias gmr='git merge'
-alias gps='git push -u'
-alias gpl='git pull'
-alias gcl='git clone'
-alias ggpull='git pull origin "$(git symbolic-ref --short HEAD)"'
-alias ggpush='git push origin "$(git symbolic-ref --short HEAD)"'
+alias g:i='git init'
+alias g:s='git status'
+alias g:a.='git add .'
+alias g:aa='git add -All'
+alias g:b='function _gbranch(){ git branch -$1 };_gbranch'
+alias g:c='git clone'
+alias g:cm='function _gcommit(){ git commit -m $1 };_gcommit'
+alias g:co='git checkout'
+alias g:mr='git merge'
+alias g:ps='git push -u'
+alias g:pl='git pull'
+alias g:pull='git pull origin "$(git symbolic-ref --short HEAD)"'
+alias g:push='git push origin "$(git symbolic-ref --short HEAD)"'
 
 # NodeJs NPM #
 alias npmrb='npm run build'
@@ -54,26 +51,30 @@ alias drmi='docker rmi -f $(docker images -q)'
 alias s:ls='sudo service --status-all'
 alias s:php='function _sphp(){ sudo service php7.4-fpm $1 };_sphp'
 alias s:nginx='function _snginx(){ sudo service nginx $1 };_snginx'
-alias s:mydb='checkDirMysqlSafe && function _smydb(){ sudo service mysql $1 };_smydb'
+alias s:mydb='function _smydb(){ sudo service mysql $1 };_smydb'
 alias s:postdb='function _spostdb(){ sudo service postgresql $1 };_spostdb'
 alias s:web='checkDirMysqlSafe && function _sweb(){ s:php $1 && s:mydb $1 && s:nginx $1 };_sweb'
 
-# Laravel 
+# PHP Composer
+# alias com='composer'
+alias com:v='composer -V'
+alias com:i='composer init'
+alias com:in='composer install'
+alias com:ud='composer update'
+alias com:ug='composer upgrade'
+alias com:re='composer require'
+alias com:re:d='composer require --dev'
+alias com:rm='composer remove'
+alias com:rm:d='composer remove --dev'
+
+# Laravel
 alias pa='php artisan'
-alias pas='pa serve'
+alias pa:ls='pa list'
+alias pa:s='pa serve'
+alias pa:v='pa --version'
 
 # Lumen
 alias lumens='php -S localhost:8000 -t public'
 
-## 
-# Function
-function checkDirMysqlSafe()
-{
-    ### Check if a directory does not exist ###
-    if [ ! -d "/var/run/mysqld" ] 
-    then
-        # echo "Directory /path/to/dir DOES NOT exists."
-        sudo mkdir -p /var/run/mysqld 
-        sudo chown mysql:mysql /var/run/mysqld
-    fi
-}
+# Create New Web Laravel/Lume
+alias web:new='new_website_project'

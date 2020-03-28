@@ -1,0 +1,161 @@
+#!/bin/bash
+
+DISABLE_WELCOME_MESSAGE=false
+ASAP_APP_NAME='BLACK BOX'
+
+# Color Palette
+RESET='\033[0m'
+BOLD='\033[1m'
+
+## Foreground
+BLACK='\033[38;5;0m'
+RED='\033[38;5;1m'
+GREEN='\033[38;5;2m'
+YELLOW='\033[38;5;3m'
+BLUE='\033[38;5;4m'
+MAGENTA='\033[38;5;5m'
+CYAN='\033[38;5;6m'
+WHITE='\033[38;5;7m'
+
+## Background
+ON_BLACK='\033[48;5;0m'
+ON_RED='\033[48;5;1m'
+ON_GREEN='\033[48;5;2m'
+ON_YELLOW='\033[48;5;3m'
+ON_BLUE='\033[48;5;4m'
+ON_MAGENTA='\033[48;5;5m'
+ON_CYAN='\033[48;5;6m'
+ON_WHITE='\033[48;5;7m'
+
+MODULE="$(basename $0)"
+
+log() {
+  echo -e "${NAMI_DEBUG:+${CYAN}${MODULE} ${MAGENTA}$(date "+%T.%2N ")}${RESET}${@}" >&2
+}
+
+info() {
+  log "${GREEN}INFO ${RESET} ==> ${@}"
+}
+
+warn() {
+  log "${YELLOW}WARN ${RESET} ==> ${@}"
+}
+
+error() {
+  log "${RED}ERROR${RESET} ==> ${@}"
+}
+
+print_welcome_page() {
+  if [ -z "$DISABLE_WELCOME_MESSAGE" ]; then
+    if [ -n "$ASAP_APP_NAME" ]; then
+      print_image_welcome_page
+    fi
+  fi
+}
+
+# Prints the welcome page for this Bitnami Docker image
+print_image_welcome_page() {
+  # log ""
+  log "${BOLD}${RED}|>|>|>${RESET} ${GREEN}Welcome to the ${BOLD}${GREEN}${ASAP_APP_NAME}${RESET} ${GREEN}command${RESET} ${BOLD}${RED}<|<|<|${RESET}"
+  # log "${BOLD}${RED}|>${RESET} ${GREEN}Terminal command on the MacOS Catalina${RESET}"
+  # log ""
+}
+
+function checkDirMysqlSafe() {
+    ### Check if a directory does not exist ###
+    if [ ! -d "/var/run/mysqld" ]
+    then
+        # echo "Directory /path/to/dir DOES NOT exists."
+        sudo mkdir -p /var/run/mysqld
+        sudo chown mysql:mysql /var/run/mysqld
+    fi
+}
+
+function new_website_project() {
+    project_lara=$( echo $1 | awk '{ split($0,array,":") } END { print array[1] }' )
+    project_dir=$( echo $1 | awk '{ split($0,array,":") } END { print array[2] }' )
+    project_host=$( echo $1 | awk '{ split($0,array,":") } END { print array[3] }' )
+
+    if [[ ( $1 == "--help") ||  $1 == "-h" ]]
+	then
+		# Display Help
+        info "Create virtual host name and project directory name."
+        info ""
+        info "Syntax: scriptTemplate -[h]"
+        info "Follow the convention with argument laravel|lumen:project_directory_name:host_name"
+        info "options:"
+        info "Print this Help."
+        info ""
+	elif [ ! -z "$project_lara" && ! -z "$project_dir" && ! -z "$project_host" ]
+    then
+        if [ $project_lara == 'laravel' ]
+        then
+            info "** Create new laravel project ${project_dir}"
+            laravel_project $project_dir
+            info "** Create virtual host ${BOLD}${project_host}.asap${RESET}"
+            create_nginx_virtual_host $project_dir $project_host
+            info "** Append dns ${BOLD}${project_host}.asap${RESET} to hosts for local user"
+            echo "127.0.0.1   ${project_host}.asap" | sudo tee -a /etc/hosts >/dev/null
+            info "Done..."
+        elif [ $project_lara == 'lumen' ]
+        then
+            info "** Create new laravel project ${project_dir}"
+            lumen_project $project_dir
+            info "** Create virtual host ${BOLD}${project_host}.asap${RESET}"
+            create_nginx_virtual_host $project_dir $project_host
+            info "** Append dns ${BOLD}${project_host}.asap${RESET} to hosts for local user"
+            echo "127.0.0.1   ${project_host}.asap" | sudo tee -a /etc/hosts >/dev/null
+            info "Done..."
+        else
+            warn "** Please check your command and try to source help (-h|--help)."
+        fi
+    else
+        warn "** Please check your command and try to source help (-h|--help)."
+    fi
+}
+
+function create_nginx_virtual_host() {
+  project_location=$HOME'/projects/www'
+
+  cat > ~/.config/vhosts/$2 <<EOF
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name $2.asap;
+    set $base $project_location/$1;
+    root $base/public;
+
+    index index.html index.htm index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    error_page 404 /index.php;
+
+    location ~ \.php$ {
+        include snippets/php_fastcgi.conf;
+    }
+
+    # additional config
+    include snippets/general.conf;
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+EOF
+}
+
+function laravel_project() {
+    pwd_location=$PWD
+    project_location=$HOME/'projects/www'
+    cd $project_location && laravel new $1 && cd $pwd_location
+}
+
+function lumen_project() {
+    pwd_location=$PWD
+    project_location=$HOME/'projects/www'
+    cd $project_location && lumen new $1 && cd $pwd_location
+}
