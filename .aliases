@@ -78,3 +78,8 @@ alias lumens='php -S localhost:8000 -t public'
 
 # Create New Web Laravel/Lume
 alias web:new='new_website_project'
+
+# Fixing permission directories and files
+alias fix:dir:file='fixing_directories_files'
+alias fix:dir='fixing_directories'
+alias fix:file='fixing_files'

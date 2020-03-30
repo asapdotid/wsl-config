@@ -88,6 +88,12 @@ export NVM_DIR="$HOME/.nvm"
 # PHP Composer bin
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
+# Connect to the Docker daemon Win 10
+export DOCKER_HOST="tcp://localhost:2375"
+
+# Docker-compose bin
+export PATH="$PATH:$HOME/.local/bin"
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
