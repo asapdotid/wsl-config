@@ -42,9 +42,12 @@ alias npm:v='npm -v'
 alias npm:i='npm init'
 alias npm:in='npm install'
 alias npm:ud='npm update'
+alias npm:d='npm run dev'
 alias npm:b='npm run build'
 alias npm:bs='npm run build-staging'
 alias npm:bp='npm run build-production'
+alias npm:audit='npm audit fix'
+alias npm:audit:f='npm audit fix --force'
 
 # Docker
 alias dc-c:b='docker-compose up -d --build -f'
