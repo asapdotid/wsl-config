@@ -89,10 +89,10 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
 # Connect to the Docker daemon Win 10
-export DOCKER_HOST="tcp://localhost:2375"
+export DOCKER_HOST=tcp://localhost:2375
 
 # Docker-compose bin
-export PATH="$PATH:$HOME/.local/bin"
+export PATH=$HOME/.local/bin:$PATH
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

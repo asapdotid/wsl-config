@@ -192,7 +192,7 @@ function fixing_files() {
   info "Done..."
 }
 
-function setup_docker_wsl() {
+function setup_docker() {
   info "Setup Docker for WSL"
   # Update the apt package list.
   sudo apt-get update -y
@@ -229,15 +229,15 @@ function setup_docker_wsl() {
   sudo usermod -aG docker $USER
 
   info "Configuration..."
-  if [ ! -f "~/.zshrc" ]
+  if [ -f "~/.zshrc" ]
   then
     info "** Connect to a remote Docker daemon on .zshrc"
-    echo 'export DOCKER_HOST="tcp://localhost:2375"' | sudo tee -a ~/.zshrc >/dev/null
+    echo "export DOCKER_HOST=tcp://localhost:2375" | sudo tee -a ~/.zshrc >/dev/null
     info "reload .zshrc"
     source ~/.zshrc
   else
     info "** Connect to a remote Docker daemon on .bashrc"
-    echo 'export DOCKER_HOST="tcp://localhost:2375"' | sudo tee -a ~/.bashrc >/dev/null
+    echo "export DOCKER_HOST=tcp://localhost:2375" | sudo tee -a ~/.bashrc >/dev/null
     info "reload .bashrc"
     source ~/.bashrc
   fi
@@ -253,17 +253,17 @@ function setup_docker_compose() {
   pip install --user docker-compose
 
   info "Configuration..."
-  if [{[ ! -f "$HOME/.local/bin/docker-compose" && -x "$HOME/.local/bin/docker-compose" ]]
+  if [[ -f "$HOME/.local/bin/docker-compose" && -x "$HOME/.local/bin/docker-compose" ]]
   then
     info "** Connect to a remote Docker daemon on .zshrc"
-    echo 'export PATH="$PATH:$HOME/.local/bin"' | sudo tee -a ~/.zshrc >/dev/null
+    echo "export PATH=$HOME/.local/bin:$PATH" | sudo tee -a ~/.zshrc >/dev/null
     info "reload .zshrc"
     source ~/.zshrc
   else
     info "** Connect to a remote Docker daemon on .bashrc"
-    echo 'export PATH="$PATH:$HOME/.local/bin"' | sudo tee -a ~/.bashrc >/dev/null
+    echo "export PATH=$HOME/.local/bin:$PATH" | sudo tee -a ~/.bashrc >/dev/null
     info "reload .bashrc"
     source ~/.bashrc
   fi
-  info "Done...""
+  info "Done..."
 }
