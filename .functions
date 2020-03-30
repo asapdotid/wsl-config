@@ -161,34 +161,22 @@ function lumen_project() {
 }
 
 function fixing_directories_files() {
-  if [ $1 === "." ]
-  then
-    dir_location = $PWD
-  fi
-  info "Fixing directories permission on ${dir_location}"
-  find ${dir_location} -type d -exec chmod 775 {} \;
-  info "Fixing files permission on ${file_location}"
-  find ${dir_location} -type f -exec chmod 644 {} \;
+  info "Fixing directories permission on $1"
+  find $1 -type d -exec chmod 775 {} \;
+  info "Fixing files permission on $1"
+  find $1 -type f -exec chmod 644 {} \;
   info "Done..."
 }
 
-function fixing_directories() {
-  if [ $1 === "." ]
-  then
-    dir_location = $PWD
-  fi
-  info "Fixing directories permission on ${dir_location}"
-  find ${dir_location} -type d -exec chmod 775 {} \;
+function fixing_directories() {  
+  info "Fixing directories permission on $1"
+  find $1 -type d -exec chmod 775 {} \;
   info "Done..."
 }
 
 function fixing_files() {
-  if [ $1 === "." ]
-  then
-    file_location = $PWD
-  fi
-  info "Fixing files permission on ${file_location}"
-  find ${file_location} -type f -exec chmod 644 {} \;
+  info "Fixing files permission on $1"
+  find $1 -type f -exec chmod 644 {} \;
   info "Done..."
 }
 

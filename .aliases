@@ -37,15 +37,21 @@ alias g:pull='git pull origin "$(git symbolic-ref --short HEAD)"'
 alias g:push='git push origin "$(git symbolic-ref --short HEAD)"'
 
 # NodeJs NPM #
-alias npmrb='npm run build'
-alias npmrbs='npm run build-staging'
+alias node:v='node -v'
+alias npm:v='npm -v'
+alias npm:i='npm init'
+alias npm:in='npm install'
+alias npm:ud='npm update'
+alias npm:b='npm run build'
+alias npm:bs='npm run build-staging'
+alias npm:bp='npm run build-production'
 
 # Docker
-alias dcr='docker-compose up -d --build -f'
+alias dc-c:b='docker-compose up -d --build -f'
 # Must be run first because images are attached to containers
-alias drmc='docker rm -f $(docker ps -a -q)'
+alias dc:rmc:all='docker rm -f $(docker ps -a -q)'
 # Delete every Docker image
-alias drmi='docker rmi -f $(docker images -q)'
+alias dc:rmi:all='docker rmi -f $(docker images -q)'
 
 # Handling Service (start, stop, restart)
 alias s:ls='sudo service --status-all'
