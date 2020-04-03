@@ -74,6 +74,19 @@ first setup `setPermission.sh` to executable:
 
 then execute the file in terminal: `./setPermission.sh`
 
+or
+
+you can add in composer.json
+
+``` bash
+"scripts": {
+    "post-install-cmd": [
+      "chgrp -R www-data storage bootstrap/cache",
+      "chmod -R ug+rwx storage bootstrap/cache"
+    ]
+}
+```
+
 
 ### Correct issue install MySQL 8.0 if upgrade from MySQL 5.7
 
