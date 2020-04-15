@@ -72,46 +72,16 @@ function checkDirMysqlSafe() {
 }
 
 function new_website_project() {
-    project_lara=$( echo $1 | awk '{ split($0,array,":") } END { print array[1] }' )
-    project_dir=$( echo $1 | awk '{ split($0,array,":") } END { print array[2] }' )
-    project_host=$( echo $1 | awk '{ split($0,array,":") } END { print array[3] }' )
-
-    if [[ ( $1 == "--help") ||  $1 == "-h" ]]
+  if [[ ( $1 == "--help") ||  $1 == "-h" ]]
 	then
-		# Display Help
-        info "Create virtual host name and project directory name."
-        info ""
-        info "Syntax: scriptTemplate -[h]"
-        info "Follow the convention with argument laravel|lumen:project_directory_name:host_name"
-        info "options:"
-        info "Print this Help."
-        info ""
-	elif [ ! -z "$project_lara" && ! -z "$project_dir" && ! -z "$project_host" ]
-    then
-        if [ $project_lara == 'laravel' ]
-        then
-            info "** Create new laravel project ${project_dir}"
-            laravel_project $project_dir
-            info "** Create virtual host ${BOLD}${project_host}.asap${RESET}"
-            create_nginx_virtual_host $project_dir $project_host
-            info "** Append dns ${BOLD}${project_host}.asap${RESET} to hosts for local user"
-            echo "127.0.0.1   ${project_host}.asap" | sudo tee -a /etc/hosts >/dev/null
-            info "Done..."
-        elif [ $project_lara == 'lumen' ]
-        then
-            info "** Create new laravel project ${project_dir}"
-            lumen_project $project_dir
-            info "** Create virtual host ${BOLD}${project_host}.asap${RESET}"
-            create_nginx_virtual_host $project_dir $project_host
-            info "** Append dns ${BOLD}${project_host}.asap${RESET} to hosts for local user"
-            echo "127.0.0.1   ${project_host}.asap" | sudo tee -a /etc/hosts >/dev/null
-            info "Done..."
-        else
-            warn "** Please check your command and try to source help (-h|--help)."
-        fi
-    else
-        warn "** Please check your command and try to source help (-h|--help)."
-    fi
+    info "Create project use Laravel or Lumen."
+    info "Syntax: web:new -[h]"
+    info "Follow the convention and select option which framework do you use."
+    info "options: 1. Laravel or 2. Lumen"
+    info "Print this Help."
+  else
+    new_site
+  fi
 }
 
 function create_nginx_virtual_host() {
@@ -168,7 +138,7 @@ function fixing_directories_files() {
   info "Done..."
 }
 
-function fixing_directories() {  
+function fixing_directories() {
   info "Fixing directories permission on $1"
   find $1 -type d -exec chmod 775 {} \;
   info "Done..."
@@ -178,6 +148,47 @@ function fixing_files() {
   info "Fixing files permission on $1"
   find $1 -type f -exec chmod 644 {} \;
   info "Done..."
+}
+
+function new_site() {
+  PS3="Which PHP framework do you want use? "
+  select opt in Laravel Lumen
+  do
+    case $opt in
+      Laravel)
+        php_framework "laravel";
+        break;;
+      Lumen)
+        php_framework "lumen";
+        break;;
+      quit)
+        break;;
+      *)
+        error "Invalid option $REPLY";;
+    esac
+  done
+}
+
+function php_framework() {
+  echo -n "Enter project directory name: "
+  read project_dir
+  echo -n "Enter project virtual host for Nginx: "
+  read project_host
+
+  if [ ! -z "$project_dir" ] && [ ! -z "$project_host" ]
+  then
+    info "** Create new $1 project ${project_dir}"
+    $1_project $project_dir
+    info "** Create virtual host ${BOLD}${project_host}.asap${RESET}"
+    create_nginx_virtual_host $project_dir $project_host
+    info "** Append dns ${BOLD}${project_host}.asap${RESET} to hosts for local user"
+    echo "127.0.0.1   ${project_host}.asap" | sudo tee -a /etc/hosts >/dev/null
+    # info "** Reload Nginx service"
+    # nginx -s reload
+    info "Done... and you can try to access on browser with url: ${BOLD}${project_host}.asap${RESET}"
+  else
+    warn "** Please check your input project diectory and vhost."
+  fi
 }
 
 function setup_docker() {
