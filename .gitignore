@@ -1,3 +1,7 @@
+# Idea
 .idea
 .vscode
 .DS_Store
+
+# Files and Directories
+.env
