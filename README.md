@@ -1,6 +1,6 @@
 # Windows 10 Pro - WSL Ubuntu for Web Server
 
-> **LEMP Stack** + **Node Js**
+**LEMP Stack** + **Node Js**
 
 > All service installation from PPA Launchpad [Link](https://launchpad.net/ubuntu)
 
@@ -12,7 +12,7 @@ you can mount windows drive to WSL which create wsl config on etc
 
 add this config:
 
-```
+``` bash
 # Enable extra metadata options by default
 [automount]
 enabled = true
@@ -28,7 +28,7 @@ generateResolvConf = true
 
 save it `:wq` and restart WSL (open PowerShell as Administrator) then execute below this
 
-```
+``` bash
 Get-Service LxssManager | Restart-Service
 ```
 
@@ -46,7 +46,7 @@ than you can link (Win10) project directory to (WSL) home directory etc:
 
 next
 
-```
+``` bash
 sudo apt update && sudo apt upgrade -y
 ```
 
@@ -87,14 +87,13 @@ you can add in composer.json
 }
 ```
 
-
 ### Correct issue install MySQL 8.0 if upgrade from MySQL 5.7
 
 > DISABLE LINUX NATIVE AIO TO FIX MYSQL INSTALLATION PROBLEM ON OPENVZ VPS
 
 check from mysql error log file on `tail -f  /var/log/mysql/error.log`
 
-```
+``` bash
 InnoDB: You can disable Linux Native AIO by setting innodb_use_native_aio = 0 in my.cnf
 ```
 
@@ -104,7 +103,7 @@ InnoDB: You can disable Linux Native AIO by setting innodb_use_native_aio = 0 in
 
 1. Therefore, create a file called **mysql-fix.cnf** under `/etc/mysql/conf.d/` and put
 
-```
+``` bash
 [mysqld]
 innodb_use_native_aio = 0
 ```
