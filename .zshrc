@@ -116,6 +116,6 @@ export PATH=$HOME/.local/bin:$PATH
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source $HOME/.aliases
-source $HOME/.function
+source $HOME/.functions
 
 print_image_welcome_page
