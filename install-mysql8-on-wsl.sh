@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mysql_apt_deb=mysql-apt-config_0.8.14-1_all.deb
+mysql_apt_deb=mysql-apt-config_0.8.15-1_all.deb
 sudo apt-get remove mysql-server mysql-client -y
 sudo apt-get autoremove -y && sudo apt-get autoclean -y
 

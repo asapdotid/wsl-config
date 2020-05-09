@@ -3,7 +3,7 @@
 php_vesion=7.4
 sudo add-apt-repository -y ppa:ondrej/php
 sudo apt-get update
-sudo apt-get install wget zip unzip
+sudo apt-get install wget zip unzip -y
 echo "Install PHP ${php_vesion}"
 sudo apt-get install php${php_vesion}-fpm -y
 echo "PHP version..."
