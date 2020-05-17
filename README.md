@@ -69,13 +69,15 @@ Adding custom Virtual Hosts to your Nginx config, sample `$HOME/.config/vhosts`
 
 Sample virtual host for `Laravel` project, file name: `laravel-project`
 
+> set $base /home/`username`/projects/laravel-project; change by your username
+
 ``` bash
 server {
     listen 80;
     listen [::]:80;
 
     server_name laravel-project.test;
-    set $base /home/usernem/projects/laravel-project;
+    set $base /home/username/projects/laravel-project;
     root $base/public;
 
     index index.php index.html index.htm;
