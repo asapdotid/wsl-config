@@ -1,9 +1,9 @@
-# Windows 10 Pro - WSL Ubuntu for Web Server (Ubuntu 20.04 LTS)
+# Windows 10 Pro - WSL Ubuntu for Web Server (Base Ubuntu 20.04 LTS)
 
 Depending on the operating system you are using:
 
 - Ubuntu 18.04 LTS and can use the `wsl-ubuntu-18.04` branch
-- Ubuntu 20.04 LTS and can use the `master` branch or `wsl-ubuntu-20.04` branch
+- Ubuntu 20.04 LTS and can use the `master` branch
 
 **LEMP Stack** + **Node Js**
 
