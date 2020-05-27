@@ -2,8 +2,19 @@
 
 Depending on the operating system you are using:
 
-- Ubuntu 18.04 LTS and can use the `wsl-ubuntu-18.04` branch
-- Ubuntu 20.04 LTS and can use the `master` branch
+- Ubuntu 18.04 LTS and you can use the `wsl-ubuntu-18.04` branch
+- Ubuntu 20.04 LTS and you can use the `master` branch
+
+> Note for `Ubuntu 20.04`, pre installation:
+
+``` bash
+sudo apt-get clean
+sudo rm -rf /var/lib/apt/lists
+sudo mkdir -p /var/lib/apt/lists/partial
+sudo apt-get clean
+sudo apt-get update
+sudo apt-get -u dist-upgrade
+```
 
 **LEMP Stack** + **Node Js**
 
@@ -112,9 +123,26 @@ After install and custom configurations setup now with aliases you can run servi
 
 > ./install-mysql8-on-wsl.sh
 
+Handdling MySQL Error Socket `/var/run/mysqld/mysqld.sock`
+
+``` bash
+sudo -I
+mkdir -p /var/run/mysqld
+touch /var/run/mysqld/mysqld.sock
+chown mysql /var/run/mysqld/mysqld.sock
+Exit
+```
+
+Start Service and try use mysql cli
+
+``` bash
+sudo service mysql start
+mysql -u root -p
+```
+
 Setup secure MySQL with password
 
-> mysql_secure_installation
+> sudo mysql_secure_installation
 
 You can install with above script and with aliases you can run services:
 

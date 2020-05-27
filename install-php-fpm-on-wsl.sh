@@ -1,12 +1,12 @@
 #!/bin/bash
 
-php_vesion=7.4
 sudo apt-get update
-echo "Install PHP ${php_vesion}"
-sudo apt-get install php${php_vesion}-fpm -y
+echo "Install PHP FPM"
+sudo apt-get install php php-fpm -y
 echo "PHP version..."
 php -v
-sudo apt-get install -y php${php_vesion}-{bcmath,bz2,intl,gd,mbstring,mysql,zip,curl,xml,imagick,cli,xmlrpc,dom,xdebug}
+echo "PHP Support Service installation"
+sudo apt-get install -y php-{bcmath,bz2,json,intl,pear,pdo,gd,mbstring,mysql,pgsql,redis,zip,curl,xml,imagick,cli,xmlrpc,dom,xdebug}
 echo "Install Composer..."
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
