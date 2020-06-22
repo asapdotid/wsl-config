@@ -24,6 +24,7 @@ alias www='cd $HOME/projects/www'
 # Git Command Alises #
 alias g:i='git init'
 alias g:s='git status'
+alias g:a='git add'
 alias g:a.='git add .'
 alias g:aa='git add -All'
 alias g:b='function _gbranch(){ git branch -$1 };_gbranch'
