@@ -1,0 +1,28 @@
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name lumen-test.asap;
+	set $base /home/asap/projects/php/lumen-test;
+	root $base/public;
+
+	# security
+	include snippets/security.conf;
+
+	# index.php
+	index index.php;
+
+	# index.php fallback
+	location / {
+		try_files $uri $uri/ /index.php?$query_string;
+	}
+
+	# handle .php
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass 127.0.0.1:9000;
+	}
+
+	# additional config
+	include snippets/general.conf;
+}

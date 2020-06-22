@@ -1,0 +1,27 @@
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name localhost localhost.test;
+	set $base /home/asap/projects/www;
+	root $base/info;
+
+	# security
+	include snippets/security.conf;
+
+	# index.php
+	index index.php;
+
+	# index.php fallback
+	location / {
+		try_files $uri $uri/ /index.php?$query_string;
+	}
+
+	# handle .php
+	location ~ \.php$ {
+		include snippets/php_fastcgi.conf;
+	}
+
+	# additional config
+	include snippets/general.conf;
+}
