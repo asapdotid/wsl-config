@@ -39,7 +39,7 @@ or via `wget`
 ```bash
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 ```
-Follow the instruction and change terminal theme do you want
+Follow the instruction and change terminal theme do you want.
 
 Install Plugin for your ZSH
 
@@ -47,7 +47,7 @@ Install Plugin for your ZSH
 1. zsh-autosuggestions [repo](https://github.com/zsh-users/zsh-autosuggestions) and [installtion](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
 1. zsh-completions [repo and installation](https://github.com/zsh-users/zsh-completions)
 
-now in your `.zshrc` look:
+Now in your `.zshrc` look:
 
 ``` bash
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-completions)
@@ -56,9 +56,9 @@ autoload -U compinit && compinit
 
 ## Customize your Aliases on Ubuntu
 
->  Copy from repo on `.config ` directory and pate to your root or home user.
+>  Copy from repo on `.config ` directory and paste to your root or home user.
 
-rename file `.env.sample` to `.env` in your `.config` directory and change content in block:
+Rename file `.env.sample` to `.env` in your `.config` directory and change content in block:
 
 ``` bash
 # Your environment variables, you should change depend of your system setup
@@ -67,11 +67,11 @@ NGINX_VHOST_LOCATION=$HOME'/.config/vhosts'
 PROJECT_LOCATION=$HOME'/projects/www'
 ```
 
-you can change with your own project.
+You can change with your own project.
 
 Then
 
-setup sources aliase and function to your `.zshrc`
+Setup sources aliases and functions to your `.zshrc`
 
 ``` bash
 source $HOME/.config/.aliases
@@ -80,15 +80,15 @@ source $HOME/.config/.functions
 
 ## Customize your VIM on Ubuntu
 
-> Copy file `.vimrc` to your root or username on home directori
+> Copy file `.vimrc` to your root or home user directory
 
-open terminal
+Open terminal
 
 ```bash
 vim
 ```
 
-from your terminal console will see installation all plugin from yout `.vimrc` or you can add plugin manualy.
+From your terminal console will see installation all plugin from yout `.vimrc` or you can add plugin manualy.
 
 ![Finish Installation Vim Plugin](./images/wsl-vim-installation-plugin.jpg "Show finish installation on vim")
 
@@ -98,11 +98,11 @@ from your terminal console will see installation all plugin from yout `.vimrc` o
 
 ## Before run all file bash script
 
-you can mount windows drive to WSL which create wsl config on etc
+You can mount windows drive to WSL which create wsl config on etc
 
 ```sudo vim /etc/wsl.conf```
 
-add this config:
+Add this config:
 
 ``` bash
 # Enable extra metadata options by default
@@ -118,7 +118,7 @@ generateHosts = true
 generateResolvConf = true
 ```
 
-save it `:wq` and restart WSL (open PowerShell as Administrator) then execute below this
+Save it `:wq` and restart WSL (open PowerShell as Administrator) then execute below this
 
 ``` bash
 Get-Service LxssManager | Restart-Service
@@ -130,7 +130,7 @@ You can check that drive show on wsl:
 
 `ls -al /c/` or `ls -al /d/`
 
-than you can link (Win10) project directory to (WSL) home directory etc:
+Than you can link (Win10) project directory to (WSL) home directory etc:
 
 `ln -s /d/projects ~/.`
 
@@ -300,7 +300,7 @@ Reference [NVM Repo](https://github.com/nvm-sh/nvm#installing-and-updating)
 
 ## Add correct permission files and directory optional (Laravel storage & boostrap/cache directory)
 
-you can run shell script `setPermission.sh` and follow instruction
+You can run shell script `setPermission.sh` and follow instruction
 
 first setup `setPermission.sh` to executable:
 
@@ -310,7 +310,7 @@ Then execute the file in terminal: `./setPermission.sh`
 
 or
 
-you can add in composer.json on root Laravel project
+You can add in composer.json on root Laravel project
 
 ``` bash
 "scripts": {
