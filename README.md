@@ -15,8 +15,86 @@ sudo apt-get clean
 sudo apt-get update
 sudo apt-get -u dist-upgrade
 ```
+---
 
-**LEMP Stack** + **Node Js**
+## Customize your terminal (Oh My Zsh) on Ubuntu
+
+Install ZSH and support for Powerline fonts
+
+``` bash
+sudo apt install zsh -y
+sudo apt install powerline fonts-powerline -y
+```
+
+Install Oh-my-zsh se instruction on [oh-my-zsh web](https://ohmyz.sh/#install)
+
+via `curl`
+
+```bash
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+or via `wget`
+
+```bash
+sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+```
+Follow the instruction and change terminal theme do you want
+
+Install Plugin for your ZSH
+
+1. zsh-syntax-highlighting [repo](https://github.com/zsh-users/zsh-syntax-highlighting) and [installation](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+1. zsh-autosuggestions [repo](https://github.com/zsh-users/zsh-autosuggestions) and [installtion](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
+1. zsh-completions [repo and installation](https://github.com/zsh-users/zsh-completions)
+
+now in your `.zshrc` look:
+
+``` bash
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-completions)
+autoload -U compinit && compinit
+```
+
+## Customize your Aliases on Ubuntu
+
+>  Copy from repo on `.config ` directory and pate to your root or home user.
+
+rename file `.env.sample` to `.env` in your `.config` directory and change content in block:
+
+``` bash
+# Your environment variables, you should change depend of your system setup
+TLD_DOMAIN='test'
+NGINX_VHOST_LOCATION=$HOME'/.config/vhosts'
+PROJECT_LOCATION=$HOME'/projects/www'
+```
+
+you can change with your own project.
+
+Then
+
+setup sources aliase and function to your `.zshrc`
+
+``` bash
+source $HOME/.config/.aliases
+source $HOME/.config/.functions
+```
+
+## Customize your VIM on Ubuntu
+
+> Copy file `.vimrc` to your root or username on home directori
+
+open terminal
+
+```bash
+vim
+```
+
+from your terminal console will see installation all plugin from yout `.vimrc` or you can add plugin manualy.
+
+![Finish Installation Vim Plugin](./images/wsl-vim-installation-plugin.jpg "Show finish installation on vim")
+
+---
+
+## **LEMP Stack** + **Node Js**
 
 ## Before run all file bash script
 
