@@ -298,6 +298,129 @@ Now you have Node JS on your system.
 
 Reference [NVM Repo](https://github.com/nvm-sh/nvm#installing-and-updating)
 
+### 6. Install MongoDB from Package Repo Ubuntu
+
+> ./install-mongodb-on-wsl.sh
+
+Start mongodb service:
+
+```bash
+sudo service mongodb start
+```
+
+Or use aliases
+
+```bash
+s:mongo start
+```
+
+Connection to mongodb shell
+
+```bash
+mongo --host 127.0.0.1:27017
+```
+
+**Adding Admin User**
+
+By default, authentication is not enabled for MongoDB users. In production environment, it may be required to secure your server and enable user authentication.
+
+Use the steps below to do that.
+
+If you want to enable authentication, run the commands to create a new admin user after you’ve logged into MongoDB server.
+
+```bash
+mongo --host 127.0.0.1:27017
+```
+
+```bash
+> use admin
+```
+
+Then run the commands below to create a new admin user
+
+```bash
+> db.createUser({user:"admin", pwd:"new_password_here", roles:[{role:"root", db:"admin"}]})
+```
+
+You should see a successful admin user created:
+
+```bash
+Successfully added user: {
+	"user" : "admin",
+	"roles" : [
+		{
+			"role" : "root",
+			"db" : "admin"
+		}
+	]
+}
+```
+
+Exit and continue below to enable MongoDB logon authentication.
+
+Run the commands below to open MongoDB config file.
+
+```bash
+sudo vim /lib/systemd/system/mongod.service
+```
+
+Then change the highlighted line to look like the one below and save.
+
+```bash
+[Service]
+User=mongodb
+Group=mongodb
+`ExecStart=/usr/bin/mongod --auth --config /etc/mongod.conf`
+PIDFile=/var/run/mongodb/mongod.pid
+```
+
+Save and exit.
+
+Restart MongDB to make the changes apply.
+
+```bash
+s:mongo start
+```
+
+After installing MongoDB, its default configuration file is located at `/etc/mongod.conf`.
+
+It is recommended to enable authentication since all users can access the database without authenticating.
+
+To do that, open the configuration file by running the commands below:
+
+```bash
+sudo nano /etc/mongod.conf
+```
+
+Then edit the line shown below to enabled:
+
+```bash
+security:
+  authorization: enabled
+```
+
+Restart MongoDB services after making the changes above.
+
+```bash
+s:mongo restart
+```
+
+Now only authentication users will be allowed to access the database server.
+
+```bash
+mongo -u admin -p `new_password_here` --authenticationDatabase admin
+```
+
+Run the commands below to verify that authentication is enabled.
+
+```bash
+mongo -u admin -p --authenticationDatabase admin
+```
+
+You should then be prompted for a password.
+
+---
+
 ## Add correct permission files and directory optional (Laravel storage & boostrap/cache directory)
 
 You can run shell script `setPermission.sh` and follow instruction
@@ -321,4 +444,6 @@ You can add in composer.json on root Laravel project
 }
 ```
 
-Do not hesitate if there are suggestions and criticisms [@asapdotid](https://github.com/asapdotid)
+---
+
+Do not hesitate if there are suggestions and criticisms 😃   [@asapdotid](https://github.com/asapdotid)

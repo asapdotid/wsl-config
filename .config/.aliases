@@ -69,6 +69,7 @@ alias s:nginx='function _snginx(){ sudo service nginx $1 };_snginx'
 alias s:mydb='function _smydb(){ sudo service mysql $1 };_smydb'
 alias s:redis='function _sredis(){ sudo service redis-server $1 };_sredis'
 alias s:postdb='function _spostdb(){ sudo service postgresql $1 };_spostdb'
+alias s:mongo='function _smongodb(){ sudo service mongodb $1 };_smongodb'
 alias s:web='function _sweb(){ s:php $1 && s:mydb $1 && s:nginx $1 };_sweb'
 
 # PHP Composer
