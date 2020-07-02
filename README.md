@@ -370,7 +370,7 @@ Then change the highlighted line to look like the one below and save.
 [Service]
 User=mongodb
 Group=mongodb
-`ExecStart=/usr/bin/mongod --auth --config /etc/mongod.conf`
+ExecStart=/usr/bin/mongod --auth --config /etc/mongod.conf
 PIDFile=/var/run/mongodb/mongod.pid
 ```
 
@@ -408,7 +408,7 @@ s:mongo restart
 Now only authentication users will be allowed to access the database server.
 
 ```bash
-mongo -u admin -p `new_password_here` --authenticationDatabase admin
+mongo -u admin -p new_password_here --authenticationDatabase admin
 ```
 
 Run the commands below to verify that authentication is enabled.
