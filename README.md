@@ -215,12 +215,61 @@ Start Service and try use mysql cli
 
 ``` bash
 sudo service mysql start
-mysql -u root -p
+sudo mysql -u root -p
 ```
 
 Setup secure MySQL with password
 
-> sudo mysql_secure_installation
+```bash
+sudo mysql_secure_installation
+```
+
+You can see password validate configuration metrics using the following query in MySQL client:
+
+```bash
+sudo mysql -u root -p
+```
+
+```bash
+mysql> SHOW VARIABLES LIKE 'validate_password%';
+```
+
+The output should be something like that :
+
+Variable_name                        | Value
+------------------------------------ | -------
+validate_password.check_user_name    | ON
+validate_password.dictionary_file    |
+validate_password.length             | 8
+validate_password.mixed_case_count   | 1
+validate_password.number_count       | 1
+validate_password.policy             | MEDIUM
+validate_password.special_char_count | 1
+
+
+Then you can set the password policy level lower, for example:
+
+```bash
+mysql> SET GLOBAL validate_password.length = 6;
+mysql> SET GLOBAL validate_password.number_count = 0;
+mysql> SET GLOBAL validate_password.policy = 0;
+```
+
+```bash
+mysql> SHOW VARIABLES LIKE 'validate_password%';
+```
+
+The output should be something like that :
+
+Variable_name                        | Value
+------------------------------------ | -------
+validate_password.check_user_name    | ON
+validate_password.dictionary_file    |
+validate_password.length             | 6
+validate_password.mixed_case_count   | 1
+validate_password.number_count       | 1
+validate_password.policy             | LOW
+validate_password.special_char_count | 1
 
 You can install with above script and with aliases you can run services:
 
