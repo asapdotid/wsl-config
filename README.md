@@ -468,6 +468,71 @@ mongo -u admin -p --authenticationDatabase admin
 
 You should then be prompted for a password.
 
+### 7. Install Postgresql
+
+> ./install-postgrsql-on-wsl.sh
+
+Start Postgresql service
+
+```bash
+sudo service postgresql start
+```
+
+**Set PostgreSQL admin user’s password and do testing**
+
+Set a password for the default admin user
+
+```bash
+sudo su - postgres
+postgres@asap:~$ psql -c "alter user postgres with password 'StrongPassword'"
+```
+
+Testing create user
+
+```bash
+createuser asapdotid
+```
+
+Add test database:
+
+```bash
+createdb testdb -O asapdotid
+```
+
+Setup password for user Asapdotid
+
+```bash
+psql
+postgres=# alter user dbuser1 with password 'asapdotid123';
+```
+
+Connect to use database `testdb`
+
+```bash
+\c testdb
+```
+
+Create table and add some dummy data:
+
+```bash
+create table test_table ( id int,first_name text, last_name text );
+insert into test_table (id,first_name,last_name) values (1,'Foo','Bar');
+select * from test_table;
+```
+
+After successfully create table, you should drop table and quite from `testdb`
+
+```bash
+DROP TABLE test_table;
+/q
+```
+
+So you can drop databse `testdb`:
+
+```bash
+postgres@asap:~$ dropdb testdb;
+```
+
 ---
 
 ## Add correct permission files and directory optional (Laravel storage & boostrap/cache directory)
