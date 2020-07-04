@@ -7,7 +7,7 @@ Depending on the operating system you are using:
 
 > Note for `Ubuntu 20.04`, pre installation:
 
-``` bash
+```bash
 sudo apt-get clean
 sudo rm -rf /var/lib/apt/lists
 sudo mkdir -p /var/lib/apt/lists/partial
@@ -15,13 +15,14 @@ sudo apt-get clean
 sudo apt-get update
 sudo apt-get -u dist-upgrade
 ```
+
 ---
 
 ## Customize your terminal (Oh My Zsh) on Ubuntu
 
 Install ZSH and support for Powerline fonts
 
-``` bash
+```bash
 sudo apt install zsh -y
 sudo apt install powerline fonts-powerline -y
 ```
@@ -39,6 +40,7 @@ or via `wget`
 ```bash
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 ```
+
 Follow the instruction and change terminal theme do you want.
 
 Install Plugin for your ZSH
@@ -49,18 +51,18 @@ Install Plugin for your ZSH
 
 Now in your `.zshrc` look:
 
-``` bash
+```bash
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-completions)
 autoload -U compinit && compinit
 ```
 
 ## Customize your Aliases on Ubuntu
 
->  Copy from repo on `.config ` directory and paste to your root or home user.
+> Copy from repo on `.config` directory and paste to your root or home user.
 
 Rename file `.env.sample` to `.env` in your `.config` directory and change content in block:
 
-``` bash
+```bash
 # Your environment variables, you should change depend of your system setup
 TLD_DOMAIN='test'
 NGINX_VHOST_LOCATION=$HOME'/.config/vhosts'
@@ -73,7 +75,7 @@ Then
 
 Setup sources aliases and functions to your `.zshrc`
 
-``` bash
+```bash
 source $HOME/.config/.aliases
 source $HOME/.config/.functions
 ```
@@ -100,11 +102,11 @@ From your terminal console will see installation all plugin from yout `.vimrc` o
 
 You can mount windows drive to WSL which create wsl config on etc
 
-```sudo vim /etc/wsl.conf```
+`sudo vim /etc/wsl.conf`
 
 Add this config:
 
-``` bash
+```bash
 # Enable extra metadata options by default
 [automount]
 enabled = true
@@ -120,7 +122,7 @@ generateResolvConf = true
 
 Save it `:wq` and restart WSL (open PowerShell as Administrator) then execute below this
 
-``` bash
+```bash
 Get-Service LxssManager | Restart-Service
 ```
 
@@ -138,7 +140,7 @@ Than you can link (Win10) project directory to (WSL) home directory etc:
 
 Next step:
 
-``` bash
+```bash
 sudo apt update && sudo apt upgrade -y
 ```
 
@@ -154,13 +156,14 @@ And you can change Nginx config `nginx.conf` for optimize, sample config: `etc/n
 Adding custom Virtual Hosts to your Nginx config, sample `$HOME/.config/vhosts`
 
 // you can change "username" with your username
-> include /home/`username`/.config/vhosts/*;
+
+> include /home/`username`/.config/vhosts/\*;
 
 Sample virtual host for `Laravel` project, file name: `laravel-project`
 
-> set $base /home/`username`/projects/laravel-project; change by your username
+> set \$base /home/`username`/projects/laravel-project; change by your username
 
-``` bash
+```bash
 server {
     listen 80;
     listen [::]:80;
@@ -203,7 +206,7 @@ After install and custom configurations setup now with aliases you can run servi
 
 Handdling MySQL Error Socket `/var/run/mysqld/mysqld.sock`
 
-``` bash
+```bash
 sudo -I
 mkdir -p /var/run/mysqld
 touch /var/run/mysqld/mysqld.sock
@@ -213,7 +216,7 @@ Exit
 
 Start Service and try use mysql cli
 
-``` bash
+```bash
 sudo service mysql start
 sudo mysql -u root -p
 ```
@@ -236,16 +239,15 @@ mysql> SHOW VARIABLES LIKE 'validate_password%';
 
 The output should be something like that :
 
-Variable_name                        | Value
------------------------------------- | -------
-validate_password.check_user_name    | ON
-validate_password.dictionary_file    |
-validate_password.length             | 8
-validate_password.mixed_case_count   | 1
-validate_password.number_count       | 1
-validate_password.policy             | MEDIUM
-validate_password.special_char_count | 1
-
+| Variable_name                        | Value  |
+| ------------------------------------ | ------ |
+| validate_password.check_user_name    | ON     |
+| validate_password.dictionary_file    |
+| validate_password.length             | 8      |
+| validate_password.mixed_case_count   | 1      |
+| validate_password.number_count       | 1      |
+| validate_password.policy             | MEDIUM |
+| validate_password.special_char_count | 1      |
 
 Then you can set the password policy level lower, for example:
 
@@ -261,15 +263,15 @@ mysql> SHOW VARIABLES LIKE 'validate_password%';
 
 The output should be something like that :
 
-Variable_name                        | Value
------------------------------------- | -------
-validate_password.check_user_name    | ON
-validate_password.dictionary_file    |
-validate_password.length             | 6
-validate_password.mixed_case_count   | 1
-validate_password.number_count       | 1
-validate_password.policy             | LOW
-validate_password.special_char_count | 1
+| Variable_name                        | Value |
+| ------------------------------------ | ----- |
+| validate_password.check_user_name    | ON    |
+| validate_password.dictionary_file    |
+| validate_password.length             | 6     |
+| validate_password.mixed_case_count   | 1     |
+| validate_password.number_count       | 1     |
+| validate_password.policy             | LOW   |
+| validate_password.special_char_count | 1     |
 
 You can install with above script and with aliases you can run services:
 
@@ -297,7 +299,7 @@ You can install with above script and with aliases you can run services:
 
 Before you can user fastcgi_pass `TCP` you should change php7.4-fpm config on www.conf: `/etc/php/7.4/fpm/pool.d/www.conf`
 
-``` bash
+```bash
 ; The address on which to accept FastCGI requests.
 ; Valid syntaxes are:
 ;   'ip.add.re.ss:port'    - to listen on a TCP socket to a specific IPv4 address on
@@ -313,7 +315,7 @@ listen = /run/php/php7.4-fpm.sock
 
 Change to:
 
-``` bash
+```bash
 ; The address on which to accept FastCGI requests.
 ; Valid syntaxes are:
 ;   'ip.add.re.ss:port'    - to listen on a TCP socket to a specific IPv4 address on
@@ -503,7 +505,7 @@ Setup password for user Asapdotid
 
 ```bash
 psql
-postgres=# alter user dbuser1 with password 'asapdotid123';
+postgres=# alter user asapdotid with password 'asapdotid123';
 ```
 
 Connect to use database `testdb`
@@ -549,7 +551,7 @@ or
 
 You can add in composer.json on root Laravel project
 
-``` bash
+```bash
 "scripts": {
     "post-install-cmd": [
       "chgrp -R www-data storage bootstrap/cache",
@@ -560,4 +562,4 @@ You can add in composer.json on root Laravel project
 
 ---
 
-Do not hesitate if there are suggestions and criticisms 😃   [@asapdotid](https://github.com/asapdotid)
+Do not hesitate if there are suggestions and criticisms 😃 [@asapdotid](https://github.com/asapdotid)
