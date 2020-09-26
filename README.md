@@ -214,10 +214,16 @@ chown mysql /var/run/mysqld/mysqld.sock
 Exit
 ```
 
+Now you have MySQL Server on your system (use aliases).
+
+- `s:mdb start`
+- `s:mdb restart`
+- `s:mdb stop`
+- `s:mdb status`
+
 Start Service and try use mysql cli
 
 ```bash
-sudo service mysql start
 sudo mysql -u root -p
 ```
 
@@ -275,10 +281,10 @@ The output should be something like that :
 
 You can install with above script and with aliases you can run services:
 
-- `s:mydb start`
-- `s:mydb restart`
-- `s:mydb stop`
-- `s:mydb status`
+- `s:mdb start`
+- `s:mdb restart`
+- `s:mdb stop`
+- `s:mdb status`
 
 ### 3. Install PHP7.4 FPM
 
@@ -334,12 +340,12 @@ listen = 127.0.0.1:9000
 
 > ./install-redis-on-wsl.sh
 
-Now you have Redis Server on your system.
+Now you have Redis Server on your system (use aliases).
 
-- `s:redis start`
-- `s:redis restart`
-- `s:redis stop`
-- `s:redis status`
+- `s:rdb start`
+- `s:rdb restart`
+- `s:rdb stop`
+- `s:rdb status`
 
 ### 5. Install NODE JS use NVM
 
@@ -353,17 +359,12 @@ Reference [NVM Repo](https://github.com/nvm-sh/nvm#installing-and-updating)
 
 > ./install-mongodb-on-wsl.sh
 
-Start mongodb service:
+Now you have MongoDB Server on your system (use aliases).
 
-```bash
-sudo service mongodb start
-```
-
-Or use aliases
-
-```bash
-s:mongo start
-```
+- `s:mgdb start`
+- `s:mgdb restart`
+- `s:mgdb stop`
+- `s:mgdb status`
 
 Connection to mongodb shell
 
@@ -430,7 +431,7 @@ Save and exit.
 Restart MongDB to make the changes apply.
 
 ```bash
-s:mongo start
+s:mgdb start
 ```
 
 After installing MongoDB, its default configuration file is located at `/etc/mongod.conf`.
@@ -453,7 +454,7 @@ security:
 Restart MongoDB services after making the changes above.
 
 ```bash
-s:mongo restart
+s:mgdb restart
 ```
 
 Now only authentication users will be allowed to access the database server.
@@ -474,11 +475,12 @@ You should then be prompted for a password.
 
 > ./install-postgrsql-on-wsl.sh
 
-Start Postgresql service
+Now you have Postgres Server on your system (use aliases).
 
-```bash
-sudo service postgresql start
-```
+- `s:pdb start`
+- `s:pdb restart`
+- `s:pdb stop`
+- `s:pdb status`
 
 **Set PostgreSQL admin user’s password and do testing**
 
