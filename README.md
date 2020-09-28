@@ -207,10 +207,9 @@ After install and custom configurations setup now with aliases you can run servi
 Handdling MySQL Error Socket `/var/run/mysqld/mysqld.sock`
 
 ```bash
-sudo -I
-mkdir -p /var/run/mysqld
-touch /var/run/mysqld/mysqld.sock
-chown mysql /var/run/mysqld/mysqld.sock
+sudo service mysql stop
+sudo usermod -d /var/lib/mysql/ mysql
+sudo service mysql start
 Exit
 ```
 
