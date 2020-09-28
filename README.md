@@ -207,10 +207,17 @@ After install and custom configurations setup now with aliases you can run servi
 Handdling MySQL Error Socket `/var/run/mysqld/mysqld.sock`
 
 ```bash
+s:mdb stop
+sudo usermod -d /var/lib/mysql/ mysql
+s:mdb start
+```
+
+or
+
+```bash
 sudo service mysql stop
 sudo usermod -d /var/lib/mysql/ mysql
 sudo service mysql start
-Exit
 ```
 
 Now you have MySQL Server on your system (use aliases).
